@@ -1,0 +1,7 @@
+{
+  "owner": "python-semantic-release",
+  "name": "upload-to-gh-release",
+  "visibility": "internal",
+  "description": "Publish Python Wheels and Other Artefacts to GitHub Releases",
+  "block_publish": false
+}
