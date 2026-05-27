@@ -1,6 +1,6 @@
 # python-semantic-release/upload-to-gh-release
 
-Publish Python Wheels and Other Artefacts to GitHub Releases
+DEPRECATED: Publish Python Wheels and Other Artefacts to GitHub Releases
 
 Hardened by [Chainguard](https://www.chainguard.dev) from the upstream action at [https://github.com/python-semantic-release/upload-to-gh-release](https://github.com/python-semantic-release/upload-to-gh-release).
 
