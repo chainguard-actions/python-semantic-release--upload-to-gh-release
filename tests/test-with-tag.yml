@@ -8,12 +8,20 @@ jobs:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
       - id: action
         uses: .
-        with:
-          github_token: fake-token-for-testing
-          tag: v1.0.0
-          root_options: "--noop -v"
         continue-on-error: true
+        with:
+          github_token: "fake-token-for-testing"
+          tag: "v1.0.0"
+          root_options: "-v"
+          directory: "."
       - name: Assert action was invoked with tag input
         run: |
-          echo "Action completed (may have failed due to fake token/tag, which is expected)"
-          echo "PASS: action was invoked with github_token and tag inputs"
+          echo "outcome: ${{ steps.action.outcome }}"
+          # The action is expected to fail with a fake token and non-existent tag,
+          # but it must have been invoked (not skipped). Acceptable outcomes are
+          # 'success' or 'failure' — never 'skipped'.
+          if [ "${{ steps.action.outcome }}" = "skipped" ]; then
+            echo "FAIL: action was skipped, expected it to be invoked"
+            exit 1
+          fi
+          echo "PASS: action was invoked with tag input (outcome: ${{ steps.action.outcome }})"
